@@ -3,9 +3,11 @@ import { FaShoppingCart } from "react-icons/fa";
 
 import { useContext } from "react";
 import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
   const { cartItems } = useContext(CartContext);
+  const { user, logout } = useContext(AuthContext);
   return (
     <nav className="bg-green-700 text-white shadow-lg sticky top-0 z-50">
       
@@ -40,7 +42,46 @@ function Navbar() {
               Contact
             </Link>
           </li>
+            {user ? (
 
+  <>
+    <li className="text-yellow-300 font-semibold">
+      {user.user.name}
+    </li>
+
+    <li>
+      <button
+        onClick={logout}
+        className="hover:text-red-300"
+      >
+        Logout
+      </button>
+    </li>
+  </>
+
+) : (
+
+  <>
+    <li>
+      <Link
+        to="/login"
+        className="hover:text-yellow-300"
+      >
+        Login
+      </Link>
+    </li>
+
+    <li>
+      <Link
+        to="/register"
+        className="hover:text-yellow-300"
+      >
+        Register
+      </Link>
+    </li>
+  </>
+
+)}
           <li>
           <Link to="/cart" className="relative">
             <FaShoppingCart size={22} />

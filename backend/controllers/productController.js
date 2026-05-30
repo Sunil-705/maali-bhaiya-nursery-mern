@@ -40,7 +40,28 @@ const getSingleProduct = async (req, res) => {
   }
 };
 
+// Get Related Products
+const getRelatedProducts = async (req, res) => {
+
+  try {
+
+    const products = await Product.find({
+      category: req.params.category,
+    }).limit(4);
+
+    res.status(200).json(products);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
 module.exports = {
   getProducts,
   getSingleProduct,
+  getRelatedProducts,
 };

@@ -7,7 +7,6 @@ function CartProvider({ children }) {
 
   const [cartItems, setCartItems] = useState(() => {
     const savedCart = localStorage.getItem("cartItems");
-
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
@@ -21,14 +20,14 @@ function CartProvider({ children }) {
     toast.success("Product added to cart 🌿");
 
     const existingItem = cartItems.find(
-      (item) => item.id === product.id
+      (item) => item._id === product._id
     );
 
     if (existingItem) {
 
       setCartItems(
         cartItems.map((item) =>
-          item.id === product.id
+          item._id === product._id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         )
@@ -46,16 +45,22 @@ function CartProvider({ children }) {
 
   // Remove item
   const removeFromCart = (id) => {
+
     toast.error("Product removed from cart");
-    setCartItems(cartItems.filter((item) => item.id !== id));
+
+    setCartItems(
+      cartItems.filter((item) => item._id !== id)
+    );
   };
 
   // Increase quantity
   const increaseQuantity = (id) => {
-   toast.info("Quantity increased");
+
+    toast.info("Quantity increased");
+
     setCartItems(
       cartItems.map((item) =>
-        item.id === id
+        item._id === id
           ? { ...item, quantity: item.quantity + 1 }
           : item
       )
@@ -64,11 +69,13 @@ function CartProvider({ children }) {
 
   // Decrease quantity
   const decreaseQuantity = (id) => {
+
     toast.info("Quantity decreased");
+
     setCartItems(
       cartItems
         .map((item) =>
-          item.id === id
+          item._id === id
             ? { ...item, quantity: item.quantity - 1 }
             : item
         )

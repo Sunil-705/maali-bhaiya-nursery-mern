@@ -1,15 +1,40 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
-import products from "../data/products";
 
 function Shop() {
 
+  const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
+
+
+  useEffect(() => {
+
+  const fetchProducts = async () => {
+
+    try {
+
+      const res = await axios.get(
+        "http://localhost:5000/api/products"
+      );
+
+      setProducts(res.data);
+
+    } catch (error) {
+
+      console.log(error);
+
+    }
+  };
+
+  fetchProducts();
+
+}, []);
 
   const filteredProducts = products.filter((product) => {
 
@@ -63,10 +88,10 @@ function Shop() {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
             {filteredProducts.map((product) => (
-             <ProductCard
-              key={product.id}
-              product={product}
-            />
+            <ProductCard
+             key={product._id}
+            product={product}
+           />
         ))}
 
           </div>

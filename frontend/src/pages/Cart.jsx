@@ -38,7 +38,7 @@ function Cart() {
             {cartItems.map((item) => (
 
               <div
-                key={item.id}
+                key={item._id}
                 className="bg-white p-5 rounded-xl shadow-md flex items-center justify-between mb-5"
               >
 
@@ -55,7 +55,7 @@ function Cart() {
                 <div className="flex items-center gap-3">
 
                   <button
-                    onClick={() => decreaseQuantity(item.id)}
+                    onClick={() => decreaseQuantity(item._id)}
                     className="bg-red-500 text-white px-3 py-1 rounded"
                   >
                     -
@@ -66,7 +66,7 @@ function Cart() {
                   </span>
 
                   <button
-                    onClick={() => increaseQuantity(item.id)}
+                    onClick={() => increaseQuantity(item._id)}
                     className="bg-green-500 text-white px-3 py-1 rounded"
                   >
                     +
@@ -75,7 +75,7 @@ function Cart() {
                 </div>
 
                 <button
-                  onClick={() => removeFromCart(item.id)}
+                  onClick={() => removeFromCart(item._id)}
                   className="bg-black text-white px-4 py-2 rounded-lg"
                 >
                   Remove

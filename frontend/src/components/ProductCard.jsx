@@ -30,7 +30,10 @@ function ProductCard({ product }) {
         </p>
 
         <button
-          onClick={() => addToCart(product)}
+          onClick={() => {
+          console.log("Clicked Product:", product);
+          addToCart(product);
+           }}
           className="mt-4 w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-lg"
         >
           Add to Cart

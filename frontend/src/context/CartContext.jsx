@@ -11,13 +11,14 @@ function CartProvider({ children }) {
   });
 
   useEffect(() => {
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(cartItems)
+    );
   }, [cartItems]);
 
-  // Add to cart
+  // Add To Cart
   const addToCart = (product) => {
-
-    toast.success("Product added to cart 🌿");
 
     const existingItem = cartItems.find(
       (item) => item._id === product._id
@@ -28,64 +29,82 @@ function CartProvider({ children }) {
       setCartItems(
         cartItems.map((item) =>
           item._id === product._id
-            ? { ...item, quantity: item.quantity + 1 }
+            ? {
+                ...item,
+                quantity: item.quantity + 1,
+              }
             : item
         )
       );
+
+      toast.info("Quantity increased 🛒");
 
     } else {
 
       setCartItems([
         ...cartItems,
-        { ...product, quantity: 1 },
+        {
+          ...product,
+          quantity: 1,
+        },
       ]);
 
+      toast.success("Product added to cart 🌿");
     }
   };
 
-  // Remove item
+  // Remove From Cart
   const removeFromCart = (id) => {
 
-    toast.error("Product removed from cart");
-
     setCartItems(
-      cartItems.filter((item) => item._id !== id)
+      cartItems.filter(
+        (item) => item._id !== id
+      )
     );
+
+    toast.error("Product removed from cart");
   };
 
-  // Increase quantity
+  // Increase Quantity
   const increaseQuantity = (id) => {
-
-    toast.info("Quantity increased");
 
     setCartItems(
       cartItems.map((item) =>
         item._id === id
-          ? { ...item, quantity: item.quantity + 1 }
+          ? {
+              ...item,
+              quantity: item.quantity + 1,
+            }
           : item
       )
     );
+
+    toast.info("Quantity increased");
   };
 
-  // Decrease quantity
+  // Decrease Quantity
   const decreaseQuantity = (id) => {
-
-    toast.info("Quantity decreased");
 
     setCartItems(
       cartItems
         .map((item) =>
           item._id === id
-            ? { ...item, quantity: item.quantity - 1 }
+            ? {
+                ...item,
+                quantity: item.quantity - 1,
+              }
             : item
         )
         .filter((item) => item.quantity > 0)
     );
+
+    toast.info("Quantity decreased");
   };
 
-  // Total price
+  // Total Price
   const totalPrice = cartItems.reduce(
-    (total, item) => total + item.price * item.quantity,
+    (total, item) =>
+      total + item.price * item.quantity,
     0
   );
 

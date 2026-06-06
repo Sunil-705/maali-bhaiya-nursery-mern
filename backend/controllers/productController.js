@@ -60,8 +60,123 @@ const getRelatedProducts = async (req, res) => {
   }
 };
 
+// Search Products
+const searchProducts = async (req, res) => {
+
+  try {
+
+    const keyword = req.query.keyword;
+
+    const products = await Product.find({
+      name: {
+        $regex: keyword,
+        $options: "i",
+      },
+    });
+
+    res.status(200).json(products);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
+// Create Product
+const createProduct = async (req, res) => {
+
+  try {
+
+    const product = await Product.create({
+      name: req.body.name,
+      price: req.body.price,
+      image: req.body.image,
+      category: req.body.category,
+      description: req.body.description,
+      stock: req.body.stock,
+    });
+
+    res.status(201).json(product);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
+// Delete Product
+const deleteProduct = async (req, res) => {
+
+  try {
+
+    const product = await Product.findById(req.params.id);
+
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+
+    await Product.findByIdAndDelete(req.params.id);
+
+    res.status(200).json({
+      message: "Product deleted successfully",
+    });
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
+
+
+// Update Product
+const updateProduct = async (req, res) => {
+
+  try {
+
+    const product = await Product.findByIdAndUpdate(
+      req.params.id,
+      req.body,
+      {
+        new: true,
+      }
+    );
+
+    if (!product) {
+      return res.status(404).json({
+        message: "Product not found",
+      });
+    }
+
+    res.status(200).json(product);
+
+  } catch (error) {
+
+    res.status(500).json({
+      message: error.message,
+    });
+
+  }
+};
+
+
 module.exports = {
   getProducts,
   getSingleProduct,
   getRelatedProducts,
+  searchProducts,
+  createProduct,
+  deleteProduct,
+  updateProduct,
 };

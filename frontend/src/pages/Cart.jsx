@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import { Link } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -42,14 +43,24 @@ function Cart() {
                 className="bg-white p-5 rounded-xl shadow-md flex items-center justify-between mb-5"
               >
 
-                <div>
-                  <h2 className="text-2xl font-semibold">
-                    {item.name}
-                  </h2>
+                <div className="flex items-center gap-4">
 
-                  <p className="text-gray-500">
-                    ₹{item.price}
-                  </p>
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-20 h-20 object-cover rounded-lg"
+                  />
+
+                  <div>
+                    <h2 className="text-2xl font-semibold">
+                      {item.name}
+                    </h2>
+
+                    <p className="text-gray-500">
+                      ₹{item.price}
+                    </p>
+                  </div>
+
                 </div>
 
                 <div className="flex items-center gap-3">
@@ -61,7 +72,7 @@ function Cart() {
                     -
                   </button>
 
-                  <span className="text-xl">
+                  <span className="text-xl font-semibold">
                     {item.quantity}
                   </span>
 
@@ -76,19 +87,27 @@ function Cart() {
 
                 <button
                   onClick={() => removeFromCart(item._id)}
-                  className="bg-black text-white px-4 py-2 rounded-lg"
+                  className="bg-black text-white px-4 py-2 rounded-lg hover:bg-red-600 transition"
                 >
                   Remove
                 </button>
 
               </div>
+
             ))}
 
             <div className="text-right mt-10">
 
-              <h2 className="text-3xl font-bold text-green-800">
+              <h2 className="text-3xl font-bold text-green-800 mb-4">
                 Total: ₹{totalPrice}
               </h2>
+
+              <Link
+                to="/checkout"
+                className="inline-block bg-green-700 hover:bg-green-800 text-white px-8 py-3 rounded-lg font-semibold transition"
+              >
+                Proceed To Checkout 🌿
+              </Link>
 
             </div>
 

@@ -6,94 +6,137 @@ import { CartContext } from "../context/CartContext";
 import { AuthContext } from "../context/AuthContext";
 
 function Navbar() {
+
   const { cartItems } = useContext(CartContext);
   const { user, logout } = useContext(AuthContext);
+
   return (
     <nav className="bg-green-700 text-white shadow-lg sticky top-0 z-50">
-      
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
 
-        <h1 className="text-2xl font-bold">
-          Green Thumb Nursery 🌿
-        </h1>
+      <div className="max-w-6xl mx-auto px-6 py-5 flex items-center justify-between">
 
-        <ul className="flex items-center gap-6 font-medium">
+        {/* Logo */}
+        <Link
+  to="/"
+  className="flex items-center gap-3"
+>
+  <img
+    src="/logo.png"
+    alt="Maali Bhaiya Nursery"
+    className="h-25 w-auto object-contain"
+  />
+
+</Link>
+
+        {/* Navigation */}
+        <ul className="flex items-center gap-8 font-medium">
 
           <li>
-            <Link to="/" className="hover:text-yellow-300">
+            <Link
+              to="/"
+              className="hover:text-yellow-300 hover:scale-105 transition"
+            >
               Home
             </Link>
           </li>
 
           <li>
-            <Link to="/shop" className="hover:text-yellow-300">
+            <Link
+              to="/shop"
+              className="hover:text-yellow-300 hover:scale-105 transition"
+            >
               Shop
             </Link>
           </li>
 
           <li>
-            <Link to="/about" className="hover:text-yellow-300">
+            <Link
+              to="/about"
+              className="hover:text-yellow-300 hover:scale-105 transition"
+            >
               About
             </Link>
           </li>
 
           <li>
-            <Link to="/contact" className="hover:text-yellow-300">
+            <Link
+              to="/contact"
+              className="hover:text-yellow-300 hover:scale-105 transition"
+            >
               Contact
             </Link>
           </li>
-            {user ? (
+
+          {user ? (
 
   <>
-    <li className="text-yellow-300 font-semibold">
-      {user.user.name}
+
+    <li>
+      <Link
+        to="/my-orders"
+        className="hover:text-yellow-300 hover:scale-105 transition"
+      >
+        My Orders
+      </Link>
+    </li>
+
+    <li className="bg-green-600 px-4 py-2 rounded-full text-yellow-300 font-semibold shadow-md">
+      👋 {user?.user?.name}
     </li>
 
     <li>
       <button
         onClick={logout}
-        className="hover:text-red-300"
+        className="px-4 py-2 border border-white rounded-lg hover:bg-red-500 hover:border-red-500 transition"
       >
         Logout
       </button>
     </li>
+
   </>
 
 ) : (
+            <>
+              <li>
+                <Link
+                  to="/login"
+                  className="px-4 py-2 border border-white rounded-lg hover:bg-white hover:text-green-700 transition"
+                >
+                  Login
+                </Link>
+              </li>
 
-  <>
-    <li>
-      <Link
-        to="/login"
-        className="hover:text-yellow-300"
-      >
-        Login
-      </Link>
-    </li>
+              <li>
+                <Link
+                  to="/register"
+                  className="bg-white text-green-700 px-4 py-2 rounded-lg font-semibold hover:bg-green-100 transition"
+                >
+                  Register
+                </Link>
+              </li>
+            </>
+          )}
 
-    <li>
-      <Link
-        to="/register"
-        className="hover:text-yellow-300"
-      >
-        Register
-      </Link>
-    </li>
-  </>
-
-)}
+          {/* Cart */}
           <li>
-          <Link to="/cart" className="relative">
-            <FaShoppingCart size={22} />
+            <Link
+              to="/cart"
+              className="relative hover:text-yellow-300 transition"
+            >
+              <FaShoppingCart size={24} />
 
-             <span className="absolute -top-2 -right-3 bg-red-500 text-xs px-1 rounded-full">
-              {cartItems.length}
-             </span>
-          </Link>
+              {cartItems.length > 0 && (
+                <span className="absolute -top-2 -right-3 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">
+                  {cartItems.length}
+                </span>
+              )}
+            </Link>
           </li>
 
         </ul>
+
       </div>
+
     </nav>
   );
 }

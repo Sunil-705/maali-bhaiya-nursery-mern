@@ -5,47 +5,53 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import ProductCard from "../components/ProductCard";
 
-
 function Shop() {
 
   const [products, setProducts] = useState([]);
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
 
-  const fetchProducts = async () => {
+    const fetchProducts = async () => {
 
-    try {
+      try {
 
-      const res = await axios.get(
-        "http://localhost:5000/api/products"
-      );
+        setLoading(true);
 
-      setProducts(res.data);
+        let url = "http://localhost:5000/api/products";
 
-    } catch (error) {
+        if (search.trim() !== "") {
+          url = `http://localhost:5000/api/products/search?keyword=${search}`;
+        }
 
-      console.log(error);
+        const res = await axios.get(url);
 
-    }
-  };
+        setProducts(res.data);
 
-  fetchProducts();
+      } catch (error) {
 
-}, []);
+        console.log(error);
+
+      } finally {
+
+        setLoading(false);
+
+      }
+    };
+
+    fetchProducts();
+
+  }, [search]);
 
   const filteredProducts = products.filter((product) => {
 
-    const matchesSearch = product.name
-      .toLowerCase()
-      .includes(search.toLowerCase());
+    return (
+      category === "All" ||
+      product.category === category
+    );
 
-    const matchesCategory =
-      category === "All" || product.category === category;
-
-    return matchesSearch && matchesCategory;
   });
 
   return (
@@ -58,7 +64,6 @@ function Shop() {
           Shop Plants 🌿
         </h1>
 
-        {/* Search + Filter */}
         <div className="flex flex-col md:flex-row gap-4 justify-center mb-10">
 
           <input
@@ -82,17 +87,28 @@ function Shop() {
 
         </div>
 
-        {/* Products */}
-        {filteredProducts.length > 0 ? (
+        <div className="text-center text-gray-600 mb-6">
+          Products Found: {filteredProducts.length}
+        </div>
+
+        {loading ? (
+
+          <div className="text-center text-2xl text-green-700 mt-20">
+            Loading Products...
+          </div>
+
+        ) : filteredProducts.length > 0 ? (
 
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
 
             {filteredProducts.map((product) => (
-            <ProductCard
-             key={product._id}
-            product={product}
-           />
-        ))}
+
+              <ProductCard
+                key={product._id}
+                product={product}
+              />
+
+            ))}
 
           </div>
 

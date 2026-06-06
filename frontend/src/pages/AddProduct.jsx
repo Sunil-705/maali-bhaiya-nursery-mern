@@ -27,10 +27,10 @@ function AddProduct() {
 
     try {
 
-      await post(
-        "/api/products",
-        formData
-      );
+      await axios.post(
+  "https://maali-bhaiya-nursery-mern.onrender.com/api/products",
+  formData
+);
 
       alert("Product Added Successfully 🌿");
 
@@ -43,11 +43,16 @@ function AddProduct() {
         stock: "",
       });
 
-    } catch (error) {
+    }catch (error) {
 
-      console.log(error);
+  console.log(error);
 
-    }
+  alert(
+    error.response?.data?.message ||
+    "Failed to add product"
+  );
+
+}
   };
 
   return (

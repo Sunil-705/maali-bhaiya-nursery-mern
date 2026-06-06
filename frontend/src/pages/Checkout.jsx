@@ -40,7 +40,7 @@ function Checkout() {
   try {
 
     await axios.post(
-      "http://localhost:5000/api/orders",
+      "https://maali-bhaiya-nursery-mern.onrender.com//api/orders",
       {
         name: formData.name,
         address: formData.address,

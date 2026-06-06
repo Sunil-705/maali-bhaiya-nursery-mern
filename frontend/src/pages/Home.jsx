@@ -17,7 +17,7 @@ function Home() {
       try {
 
         const res = await axios.get(
-          "http://localhost:5000/api/products"
+          "https://maali-bhaiya-nursery-mern.onrender.com//api/products"
         );
 
         setFeaturedPlants(

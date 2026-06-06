@@ -19,13 +19,13 @@ function ProductDetails() {
     const fetchProduct = async () => {
       try {
         const res = await axios.get(
-          `http://localhost:5000/api/products/${id}`
+          `https://maali-bhaiya-nursery-mern.onrender.com//api/products/${id}`
         );
 
         setProduct(res.data);
 
         const relatedRes = await axios.get(
-          `http://localhost:5000/api/products/related/${res.data.category}`
+          `https://maali-bhaiya-nursery-mern.onrender.com//api/products/related/${res.data.category}`
         );
 
         setRelatedProducts(

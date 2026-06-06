@@ -13,7 +13,7 @@ function AdminProducts() {
       try {
 
         const res = await axios.get(
-          "http://localhost:5000/api/products"
+          "https://maali-bhaiya-nursery-mern.onrender.com//api/products"
         );
 
         setProducts(res.data);
@@ -40,7 +40,7 @@ function AdminProducts() {
     try {
 
       await axios.delete(
-        `http://localhost:5000/api/products/${id}`
+        `https://maali-bhaiya-nursery-mern.onrender.com//api/products/${id}`
       );
 
       setProducts(

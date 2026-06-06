@@ -12,7 +12,7 @@ function AdminOrders() {
       try {
 
         const res = await axios.get(
-          "http://localhost:5000/api/orders"
+          "https://maali-bhaiya-nursery-mern.onrender.com//api/orders"
         );
 
         setOrders(res.data);

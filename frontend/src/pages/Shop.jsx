@@ -20,10 +20,10 @@ function Shop() {
 
         setLoading(true);
 
-        let url = "https://maali-bhaiya-nursery-mern.onrender.com//api/products";
+        let url = "https://maali-bhaiya-nursery-mern.onrender.com/api/products";
 
         if (search.trim() !== "") {
-          url = `https://maali-bhaiya-nursery-mern.onrender.com//api/products/search?keyword=${search}`;
+         url = `https://maali-bhaiya-nursery-mern.onrender.com/api/products/search?keyword=${search}`;
         }
 
         const res = await axios.get(url);

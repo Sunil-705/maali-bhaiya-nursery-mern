@@ -23,7 +23,7 @@ function EditProduct() {
       try {
 
         const res = await axios.get(
-          `https://maali-bhaiya-nursery-mern.onrender.com//api/products/${id}`
+         `https://maali-bhaiya-nursery-mern.onrender.com/api/products/${id}`
         );
 
         setFormData(res.data);
@@ -55,7 +55,7 @@ function EditProduct() {
     try {
 
       await axios.put(
-        `https://maali-bhaiya-nursery-mern.onrender.com//api/products/${id}`,
+        `https://maali-bhaiya-nursery-mern.onrender.com/api/products/${id}`,
         formData
       );
 

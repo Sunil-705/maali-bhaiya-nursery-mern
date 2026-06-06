@@ -41,7 +41,7 @@ function Contact() {
 
         <div className="max-w-3xl mx-auto bg-white p-8 rounded-xl shadow-lg">
 
-          <h1 className="text-5xl font-bold text-center text-green-700 mb-8">
+          <h1 className="text-3xl md:text-5xl font-bold text-center text-green-700 mb-8">
             Contact Maali Bhaiya Nursery 📞
           </h1>
 
@@ -90,14 +90,12 @@ function Contact() {
 
           </form>
 
-          <div className="mt-10 text-center text-gray-700">
+          <div className="mt-10 grid md:grid-cols-3 gap-4 text-center">
 
-            <p>📧 support@maalibhaiyanursery.com</p>
-
-            <p className="mt-2">📞 +91 95XXXXXX</p>
-
+            <p>📧 sunilkumar.dev@gmail.com.com</p>
+            <p>📞 +91 95######</p>
             <p className="mt-2">
-              📍 Green Thumb Nursery, India
+              📍 Uttar Pradesh, India
             </p>
 
           </div>

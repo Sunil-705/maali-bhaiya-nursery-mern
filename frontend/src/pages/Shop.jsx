@@ -45,6 +45,11 @@ function Shop() {
 
   }, [search]);
 
+  const categories = [
+    "All",
+    ...new Set(products.map((product) => product.category))
+  ];
+
   const filteredProducts = products.filter((product) => {
 
     return (
@@ -73,17 +78,13 @@ function Shop() {
             onChange={(e) => setSearch(e.target.value)}
             className="px-4 py-3 rounded-lg border w-full md:w-96"
           />
-
-          <select
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            className="px-4 py-3 rounded-lg border"
-          >
-            <option>All</option>
-            <option>Indoor</option>
-            <option>Flower</option>
-            <option>Medicinal</option>
-          </select>
+       <select value={category} onChange={(e) => setCategory(e.target.value)}className="px-4 py-3 rounded-lg border">
+        {categories.map((cat) => (
+          <option key={cat} value={cat}>
+            {cat}
+            </option>
+          ))}
+        </select>
 
         </div>
 

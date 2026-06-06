@@ -1,6 +1,7 @@
 import { useState, useContext } from "react";
 import { toast } from "react-toastify";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
@@ -9,6 +10,8 @@ import { CartContext } from "../context/CartContext";
 
 
 function Checkout() {
+
+  const navigate = useNavigate();
 
   const { cartItems, totalPrice } =
   useContext(CartContext);
@@ -40,7 +43,7 @@ function Checkout() {
   try {
 
     await axios.post(
-      "https://maali-bhaiya-nursery-mern.onrender.com//api/orders",
+      "https://maali-bhaiya-nursery-mern.onrender.com/api/orders",
       {
         name: formData.name,
         address: formData.address,
@@ -52,10 +55,11 @@ function Checkout() {
 
     toast.success("Order Placed Successfully 🌿");
 
+    
     localStorage.removeItem("cartItems");
 
     setTimeout(() => {
-      window.location.href = "/my-orders";
+      navigate("/my-orders");
     }, 2000);
 
   } catch (error) {

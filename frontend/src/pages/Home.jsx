@@ -17,7 +17,7 @@ function Home() {
       try {
 
         const res = await axios.get(
-          "https://maali-bhaiya-nursery-mern.onrender.com//api/products"
+          "https://maali-bhaiya-nursery-mern.onrender.com/api/products"
         );
 
         setFeaturedPlants(
@@ -40,14 +40,14 @@ function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="bg-gradient-to-r from-green-100 to-green-300 min-h-screen flex items-center px-6">
+      <section className="bg-gradient-to-r from-green-100 to-green-300 py-16 lg:py-20 flex items-center px-6">
 
 <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
     {/* Left Side */}
     <div>
 
-      <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-green-800 mb-6 leading-tight">
+      <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold text-green-800 mb-6 leading-tight">
         Bring Nature Into Your Home 🌿
       </h1>
       <p className="text-lg md:text-xl lg:text-2xl text-gray-700 mb-8">
@@ -122,7 +122,7 @@ function Home() {
       <img
         src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?w=900"
         alt="Plant"
-       className="w-full max-w-xl mx-auto rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
+       className="w-full max-w-lg mx-auto rounded-3xl shadow-2xl hover:scale-105 transition duration-500"
       />
 
     </div>
@@ -141,16 +141,24 @@ function Home() {
 
         <div className="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 px-6">
 
-          {featuredPlants.map((plant) => (
+  {featuredPlants.length === 0 ? (
 
-            <ProductCard
-              key={plant._id}
-              product={plant}
-            />
+    <p className="text-center text-gray-500 col-span-full">
+      Loading featured plants...
+    </p>
 
-          ))}
+  ) : (
 
-        </div>
+    featuredPlants.map((plant) => (
+      <ProductCard
+        key={plant._id}
+        product={plant}
+      />
+    ))
+
+  )}
+
+</div>
 
       </section>
 

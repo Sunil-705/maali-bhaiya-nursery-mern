@@ -1,10 +1,35 @@
+import { useEffect, useState } from "react";
+import axios from "axios";
+
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 function MyOrders() {
 
-  const orders =
-    JSON.parse(localStorage.getItem("orders")) || [];
+  const [orders, setOrders] = useState([]);
+
+  useEffect(() => {
+
+    const fetchOrders = async () => {
+
+      try {
+
+        const res = await axios.get(
+          "https://maali-bhaiya-nursery-mern.onrender.com/api/orders"
+        );
+
+        setOrders(res.data);
+
+      } catch (error) {
+
+        console.log(error);
+
+      }
+    };
+
+    fetchOrders();
+
+  }, []);
 
   return (
     <>
@@ -29,12 +54,12 @@ function MyOrders() {
             {orders.map((order) => (
 
               <div
-                key={order.id}
+                key={order._id}
                 className="bg-white p-6 rounded-xl shadow"
               >
 
                 <h2 className="text-xl font-bold mb-2">
-                  Order #{order.id}
+                  Order #{order._id.slice(-6)}
                 </h2>
 
                 <p>
@@ -50,11 +75,11 @@ function MyOrders() {
                 </p>
 
                 <p>
-                  <strong>Date:</strong> {order.date}
+                  <strong>Total:</strong> ₹{order.totalAmount}
                 </p>
 
                 <p className="text-green-600 font-semibold mt-2">
-                  ✅ {order.status}
+                  ✅ Order Placed
                 </p>
 
               </div>

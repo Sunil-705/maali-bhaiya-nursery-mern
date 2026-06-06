@@ -60,7 +60,7 @@ function Footer() {
   </h2>
 
   <p className="text-gray-400 break-all">
-    📧 sunilkumar.dev@gmail.com
+    📧 sunil.dev@gmail.com
   </p>
 
   <p className="text-gray-400 mt-2">

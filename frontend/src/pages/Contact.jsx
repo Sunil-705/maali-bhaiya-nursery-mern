@@ -94,7 +94,7 @@ function Contact() {
 
   <div>
     <p className="font-medium">
-      📧 sunilkumar.dev@gmail.com
+      📧 sunil.dev@gmail.com
     </p>
   </div>
 

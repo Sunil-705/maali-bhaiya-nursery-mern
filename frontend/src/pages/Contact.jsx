@@ -90,17 +90,29 @@ function Contact() {
 
           </form>
 
-          <div className="mt-10 grid md:grid-cols-3 gap-4 text-center">
+<div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
 
-            <p>📧 sunilkumar.dev@gmail.com.com</p>
-            <p>📞 +91 95######</p>
-            <p className="mt-2">
-              📍 Uttar Pradesh, India
-            </p>
+  <div>
+    <p className="font-medium">
+      📧 sunilkumar.dev@gmail.com
+    </p>
+  </div>
 
-          </div>
+  <div>
+    <p className="font-medium">
+      📞 +91 95XXXXXX
+    </p>
+  </div>
 
-        </div>
+  <div>
+    <p className="font-medium">
+      📍 Uttar Pradesh, India
+    </p>
+  </div>
+
+</div>
+
+</div>
 
       </section>
 

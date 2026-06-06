@@ -55,22 +55,22 @@ function Footer() {
 
         {/* Contact */}
         <div>
-          <h2 className="text-xl font-semibold mb-3">
-            Contact
-          </h2>
+  <h2 className="text-xl font-semibold mb-3">
+    Contact
+  </h2>
 
-          <p className="text-gray-400">
-            📧 support@greenthumbnursery.com
-          </p>
+  <p className="text-gray-400 break-all">
+    📧 sunilkumar.dev@gmail.com
+  </p>
 
-          <p className="text-gray-400 mt-2">
-            📞 +91 95XXXXXX
-          </p>
+  <p className="text-gray-400 mt-2">
+    📞 +91 95XXXXXX
+  </p>
 
-          <p className="text-gray-400 mt-2">
-            📍 India
-          </p>
-        </div>
+  <p className="text-gray-400 mt-2">
+    📍 Uttar Pradesh, India
+  </p>
+</div>
 
       </div>
 

@@ -34,7 +34,7 @@ function Register() {
     try {
 
       const res = await axios.post(
-        "https://maali-bhaiya-nursery-mern.onrender.com//api/auth/register",
+        "https://maali-bhaiya-nursery-mern.onrender.com/api/auth/register",
         formData
       );
 
@@ -42,11 +42,16 @@ function Register() {
 
       navigate("/login");
 
-    } catch (error) {
+    }catch (error) {
+  console.log("REGISTER ERROR:", error);
+  console.log("RESPONSE:", error.response);
+  console.log("DATA:", error.response?.data);
 
-      toast.error(error.response.data.message);
-    }
-  };
+  toast.error(
+    error.response?.data?.message || "Registration Failed"
+  );
+}
+  }
 
   return (
     <>

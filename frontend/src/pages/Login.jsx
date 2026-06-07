@@ -37,7 +37,7 @@ function Login() {
     try {
 
       const res = await axios.post(
-        "https://maali-bhaiya-nursery-mern.onrender.com//api/auth/login",
+        "https://maali-bhaiya-nursery-mern.onrender.com/api/auth/login",
         formData
       );
 
